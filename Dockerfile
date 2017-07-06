@@ -10,14 +10,17 @@ RUN apk add --no-cache wget bash \
     && mkdir /opt \
     && wget -q -O - $MIRROR/zookeeper/zookeeper-$VERSION/zookeeper-$VERSION.tar.gz | tar -xzf - -C /opt \
     && mv /opt/zookeeper-$VERSION /opt/zookeeper \
-    && cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg \
-    && mkdir -p /tmp/zookeeper/log
+    && mkdir -p /var/zookeeper/log \
+    && mkdir -p /var/zookeeper/data \
+    && mkdir -p /var/zookeeper/datalog
 
 EXPOSE 2181 2888 3888
 
 WORKDIR /opt/zookeeper
 
-VOLUME ["/opt/zookeeper/conf", "/tmp/zookeeper"]
+VOLUME ["/opt/zookeeper/conf", "/var/zookeeper/data"]
 ADD run.sh /opt/zookeeper.sh
+ADD zoo.cfg /opt/zookeeper/conf/zoo.cfg
+ADD log4j.properties /opt/zookeeper/conf/log4j.properties
 
 CMD ["/opt/zookeeper.sh"]
