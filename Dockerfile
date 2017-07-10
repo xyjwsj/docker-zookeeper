@@ -23,4 +23,6 @@ ADD run.sh /opt/zookeeper.sh
 ADD zoo.cfg /opt/zookeeper/conf/zoo.cfg
 ADD log4j.properties /opt/zookeeper/conf/log4j.properties
 
+RUN chmod a+x /opt/zookeeper.sh
+
 CMD ["/opt/zookeeper.sh"]
