@@ -4,7 +4,7 @@ ZOO_CFG="/opt/zookeeper/conf/zoo.cfg"
 
 # Output server ID
 echo "server id (myid): ${SERVER_ID}"
-echo "${SERVER_ID}" > /tmp/zookeeper/myid
+echo "${SERVER_ID}" > /var/zookeeper/data/myid
 
 # Add additional ZooKeeper servers into the zoo.cfg file
 echo "${ADDITIONAL_ZOOKEEPER_1}" >> ${ZOO_CFG}
